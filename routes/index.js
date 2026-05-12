@@ -8,7 +8,7 @@ const router = express.Router();
 const registerController = require('../controllers/RegisterController');
 
 //import login controller
-const loginController = require('../controllers/LoginConroller');
+const loginController = require('../controllers/LoginController');
 
 //import validate register and login
 const { validateRegister, validateLogin } = require('../utils/validators/auth');

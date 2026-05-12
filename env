@@ -1,2 +1,0 @@
-DATABASE_URL="mysql://root:@localhost:3306/backend_express"
-JWT_SECRET=5a70fff2b959b68969a7e0bc93c63a25c46643bc1834de8e4c1fa25a5828ccfc

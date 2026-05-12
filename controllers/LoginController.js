@@ -35,7 +35,7 @@ const login = async (req, res) => {
                 email: req.body.email,
             },
             select: {
-                id: true,
+                idUser: true,
                 name: true,
                 email: true,
                 password: true,
@@ -63,7 +63,7 @@ const login = async (req, res) => {
             });
 
         //generate token JWT
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: user.idUser }, process.env.JWT_SECRET, {
             expiresIn: "1h",
         });
 
