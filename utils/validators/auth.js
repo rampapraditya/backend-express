@@ -7,9 +7,7 @@ const prisma = require('../../prisma/client');
 // Definisikan validasi untuk register
 const validateRegister = [
     body('name').notEmpty().withMessage('Name is required'),
-    body('email')
-    .notEmpty().withMessage('Email is required')
-    .isEmail().withMessage('Email is invalid')
+    body('email').notEmpty().withMessage('Email is required').isEmail().withMessage('Email is invalid')
     .custom(async (value) => {
         if (!value) {
             throw new Error('Email is required');
