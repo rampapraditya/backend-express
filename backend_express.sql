@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 12, 2026 at 09:15 AM
--- Server version: 8.4.7
--- PHP Version: 8.3.28
+-- Generation Time: May 13, 2026 at 04:38 AM
+-- Server version: 8.3.0
+-- PHP Version: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE IF NOT EXISTS `books` (
-  `idBuku` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `author` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idBuku` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `stock` int NOT NULL DEFAULT '0',
-  `idCategory` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idCategory` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updatedAt` datetime(3) NOT NULL,
   PRIMARY KEY (`idBuku`),
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS `books` (
 
 DROP TABLE IF EXISTS `borrows`;
 CREATE TABLE IF NOT EXISTS `borrows` (
-  `idPinjam` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `idUser` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `idBuku` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idPinjam` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idUser` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idBuku` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `borrowDate` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `returnDate` datetime(3) DEFAULT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'available',
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'available',
   PRIMARY KEY (`idPinjam`),
   KEY `borrows_idUser_fkey` (`idUser`),
   KEY `borrows_idBuku_fkey` (`idBuku`)
@@ -67,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `borrows` (
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
-  `idCategory` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idCategory` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updated_at` datetime(3) NOT NULL,
   PRIMARY KEY (`idCategory`),
@@ -83,15 +83,23 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `idUser` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idUser` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updated_at` datetime(3) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `users_email_key` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
+('0d613e14-75f3-44fa-b0a3-7f04fc9aa4c0', 'Dinda', 'dinda@gmail.com', '$2b$10$1ZN3kiyYhabjcApF7e0vm.GISosxilHGxDmuoghf3C7Q1pui1.pXK', '2026-05-13 04:19:39.426', '2026-05-13 04:19:39.426'),
+('8f93caae-3d75-45d4-bb47-27855e6638d3', 'Rampa Praditya', 'rampapraditya@gmail.com', '$2b$10$WNqPW5/oB6bbxla7uOzEQeb0rEj/rJqBXZ3raWfQJhlFyOJri.WW2', '2026-05-13 01:55:01.854', '2026-05-13 02:02:30.166');
 
 -- --------------------------------------------------------
 
@@ -101,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 DROP TABLE IF EXISTS `_prisma_migrations`;
 CREATE TABLE IF NOT EXISTS `_prisma_migrations` (
-  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `checksum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checksum` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `finished_at` datetime(3) DEFAULT NULL,
-  `migration_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logs` text COLLATE utf8mb4_unicode_ci,
+  `migration_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `rolled_back_at` datetime(3) DEFAULT NULL,
   `started_at` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `applied_steps_count` int UNSIGNED NOT NULL DEFAULT '0',
